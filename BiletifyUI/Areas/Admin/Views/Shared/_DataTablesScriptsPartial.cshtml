@@ -1,0 +1,30 @@
+﻿<!-- DataTables  & Plugins -->
+<script src="~/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="~/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="~/admin/plugins/jszip/jszip.min.js"></script>
+<script src="~/admin/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="~/admin/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="~/admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="~/admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+
+<script>
+$(function () {
+    $.ajax({
+        url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Turkish.json",
+        dataType: 'json',
+        success: function (data) {
+            $("#myDataTable").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "excel", "pdf", "print"],
+                "language": data
+            }).buttons().container().appendTo('#myDataTable_wrapper .col-md-6:eq(0)');
+        }
+    });
+});
+</script>

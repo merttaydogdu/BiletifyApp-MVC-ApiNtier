@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Biletify.Business</id>
+    <version>1.0.0</version>
+    <title>Biletify.Business</title>
+    <authors>Biletify.Business</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net7.0">
+        <dependency id="Biletify.Data" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Biletify.Shared" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="AutoMapper" version="13.0.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Mert\Desktop\BiletifyApp\BiletifyApp\Biletify\Biletify.Business\bin\Debug\net7.0\Biletify.Business.dll" target="lib\net7.0\Biletify.Business.dll" />
+  </files>
+</package>

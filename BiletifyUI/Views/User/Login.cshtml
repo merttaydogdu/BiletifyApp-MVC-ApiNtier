@@ -1,0 +1,40 @@
+﻿@model LoginViewModel
+
+<link rel="stylesheet" href="~/website/css/login.css">
+<link rel="stylesheet" href="~/website/css/style.css">
+
+<form 
+      asp-area=""
+      asp-controller="User"
+      asp-action="Login"
+      method="post">
+      <input type="hidden" asp-for="ReturnUrl" /> 
+<div class="row">
+    <h1 style="color: #1ED760;" class="display-6 text-center mt-3">Giriş Yap</h1>
+    <hr style="color: #1ED760;">
+    <div class="login-form">
+        <div class="mt-4">
+            <label asp-for="UserName" class="form-label d-grid"></label>
+            <input class="form-control" asp-for="UserName" style="width: 400px;">
+            <div id="emailHelp" class="form-text mt-2">
+                Kişisel bilgilerinizi kimseyle
+                paylaşmayacağız.
+            </div>
+        </div>
+        <div class="mt-3">
+            <label asp-for="Password" class="form-label d-grid"></label>
+            <input type="password" class="form-control" asp-for="Password" style="width: 400px;">
+            <div class="mt-4">
+                <button href="#" type="submit" class="log-in d-grid w-50 mx-auto">Giriş Yap</button>
+            </div>
+            <div class="col-md-12 text-center text-danger mt-2" asp-validation-summary="All"></div>
+            <div class="signup-link mt-3">
+                <p>Biletify'da yeni misin? <a asp-controller="User" asp-action="SignUp" class="link">Kayıt Ol</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+
+<script src="~/website/js/login.js"></script>

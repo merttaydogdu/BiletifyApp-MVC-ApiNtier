@@ -1,0 +1,165 @@
+﻿ @model AddProductViewModel
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="mt-1 m-0">Ürün Ekle</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home">Anasayfa</a></li>
+                        <li class="breadcrumb-item active">Ürün Ekle</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title"></h3>
+                        </div>
+                        <form asp-area="Admin" asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
+                            <div class="card-body row">
+
+                                <div class="col-md-9">
+                                    <div class="card card-dark">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Ürün Bilgileri</h3>
+                                        </div>
+                                        <div class="card-body row">
+                                            <div class="col-md-7">
+                                                <div class="form-group">
+                                                    <label asp-for="Name"></label>
+                                                    <input asp-for="Name" class="form-control" placeholder="Ürün adı">
+                                                    <span class="text-danger" asp-validation-for="Name"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label asp-for="Price"></label>
+                                                    <input asp-for="Price" class="form-control" placeholder="Ürün fiyatı">
+                                                    <span class="text-danger" asp-validation-for="Price"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Seçenekler</label>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="icheck-primary">
+                                                            <input asp-for="IsActive" type="checkbox">
+                                                            <label asp-for="IsActive"></label>
+                                                        </div>
+                                                        <div class="icheck-primary">
+                                                            <input asp-for="IsHome" type="checkbox">
+                                                            <label asp-for="IsHome"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label asp-for="Properties"></label>
+                                                <div class="form-group">
+                                                    <textarea asp-for="Properties"></textarea>
+                                                    <span class="text-danger" asp-validation-for="Properties"></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card card-dark">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Ürün Resmi</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group mb-0">
+                                                        <input type="file" id="image" name="image" class="d-none" />
+                                                        <label class="btn btn-outline-secondary btn-sm" for="image">Resim Yükle</label>
+                                                        <span class="text-danger">@ViewBag.ImageErrorMessage</span>
+                                                        <div>
+                                                            <img id="img-viewer" class="img-fluid" style="height:150px;" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="card card-dark">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Kategori Seç</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    @foreach (var c in Model.Categories)
+                                                    {
+                                                        <div class="icheck-primary">
+                                                            <input @(Model.CategoryIds.Any(cid => cid == c.Id) ? "checked" : "")
+                                                                   type="checkbox" id="category_checkbox_@c.Id" name="CategoryIds" value="@c.Id">
+                                                            <label for="category_checkbox_@c.Id">
+                                                                @c.Name
+                                                            </label>
+                                                        </div>
+                                                    }
+                                                    <span class="text-danger">@ViewBag.CategoryErrorMessage</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="btn-group w-100">
+                                        <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="btn btn-danger btn-xl">Vazgeç</a>
+                                        <button type="submit" class="btn btn-dark btn-xl">Kaydet</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Styles {
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="~/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/admin/plugins/summernote/summernote-bs4.min.css">
+
+}
+
+@section Scripts {
+    <!-- Summernote -->
+    <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="~/admin/dist/js/summernote.js"></script>
+
+    <script>
+        $(function () {
+            // Summernote
+            $('#Properties').summernote({
+                "height": 200
+            })
+        })
+        document.getElementById("image").addEventListener("change",function(e){
+            const selectedFile = e.target.files[0];
+            $("#img-viewer").attr("src", window.URL.createObjectURL(selectedFile));
+        })
+    </script>
+}
+

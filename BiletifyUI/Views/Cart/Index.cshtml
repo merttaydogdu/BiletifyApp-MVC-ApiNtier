@@ -1,0 +1,72 @@
+﻿@model Cart
+
+<link rel="stylesheet" href="~/website/css/cart.css" />
+
+
+@if (Model.CartItems.Count==0)
+{
+    <div class="alert alert-secondary text-center display-6 pb-0 mt-1">
+        <p>Sepetinizde ürün bulunmamaktadır.</p>
+    </div>
+}
+else
+{
+    <h1 class="display-6 text-center mt-2" style="color:#1ED760;">Sepet</h1>
+    <hr style="color:#1ED760;" />
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Ürün</th>
+                <th width="150">Fiyat</th>
+                <th class="text-center" width="90">Adet</th>
+                <th width="130">Toplam</th>
+                <th width="100">#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.CartItems.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <img src="~/images/products/@Model.CartItems[i].Product.ImageUrl" style="width:50px; height:50px;" />
+                        <span class="ms-2">@Model.CartItems[i].Product.Name</span>
+                    </td>
+                    <td class="align-middle">@($"{Model.CartItems[i].Product.Price:C0}")</td>
+                    <td class="align-middle">
+                        <form id="form_@Model.CartItems[i].Id" asp-area="" asp-controller="Cart" asp-action="ChangeQuantity" method="post" class="quantity-form">
+                            <input type="hidden" value="@Model.CartItems[i].Id" name="Id" />
+                            <div class="quantity-input">
+                                <button type="button" class="decrease-btn">-</button>
+                                <input min="1" class="form-control quantity-field" type="number" value="@Model.CartItems[i].Quantity" name="quantity" />
+                                <button type="button" class="increase-btn">+</button>
+                            </div>
+                        </form>
+                    </td>
+                    <td class="align-middle">@($"{(Model.CartItems[i].Product.Price * Model.CartItems[i].Quantity):C0}")</td>
+                    <td class="align-middle">
+                        <a asp-area=""
+                           asp-controller="Cart"
+                           asp-action="RemoveItem"
+                           asp-route-id="@Model.CartItems[i].Id"
+                           class="btn btn-danger btn-sm">Çıkar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfooter>
+            <tr>
+                <td colspan="4" class="text-end fw-bold align-middle" style="color:#FFFF;">Toplam Tutar:</td>
+                <td colspan="2" class="fs-2 display-6" style="color:#1ED760;">@($"{Model.TotalPrice():C0}")</td>
+            </tr>
+            <tr>
+                <td colspan="6" class="text-end">
+                    <a class="btn btn-secondary"  asp-area="" asp-controller="Home" asp-action="Index">Alışverişe Devam Et</a>
+                    <a class="btn btn-success" style="background-color:#1ad760;" asp-area="" asp-controller="Cart" asp-action="CheckOut">Ödeme Adımına Geç</a>
+                </td>
+            </tr>
+        </tfooter>
+    </table>
+
+}
+
+<script src="~/website/js/cart.js"></script>

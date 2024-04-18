@@ -1,0 +1,81 @@
+﻿table.table-dark.table-striped.table-hover,
+table.table-dark.table-striped.table-hover td,
+table.table-dark.table-striped.table-hover th {
+    border-color: #1ED760;
+}
+
+
+table.table input[type="number"] {
+    background-color: #1a1a1a;
+    color: #999999;
+    border-color: #1ED760;
+    outline: none; 
+    box-shadow: 0 1px;
+    outline-color:#1ED760;
+}
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-field {
+    width: 50px; 
+    text-align: center;
+}
+
+    .quantity-field::-webkit-inner-spin-button,
+    .quantity-field::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-field {
+    width: 50px;
+    text-align: center;
+    background-color: #495057;
+    color: #ffffff; 
+    border: 1px solid #ced4da; 
+}
+
+.quantity-field::-webkit-inner-spin-button,
+.quantity-field::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.decrease-btn,
+.increase-btn {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center;
+    background-color: #343a40; 
+    color: #ffffff;
+    border: 1px solid #343a40;
+    cursor: pointer;
+}
+
+.decrease-btn:hover,
+.increase-btn:hover {
+    background-color: #212529;
+}
+
+.table-dark th:nth-child(4),
+.table-dark td:nth-child(4) {
+    text-align: center;
+}
+
+.table-dark th:nth-child(5),
+.table-dark td:nth-child(5),
+.table-dark tfoot td:first-child {
+    text-align: center;
+    padding-top: 10px; 
+}

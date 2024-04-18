@@ -1,0 +1,133 @@
+﻿<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-success elevation-4">
+    <!-- Brand Logo -->
+    <a asp-area="Admin" asp-controller="Home" asp-action="Index"  class="brand-link">
+        <img src="~/admin/dist/img/tify-white.png" alt="Biletify Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8;">
+        <span class="brand-text font-weight-light">Biletify Panel</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        @await Component.InvokeAsync("SideBarUser")
+
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Uygulama ayarları menüsü--> 
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        &nbsp;&nbsp;<i class="fa-solid fa-sliders"></i>&nbsp;
+                        <p> Uygulama Ayarları</p>
+                    </a>
+                </li>
+
+                <!--ürünler menüsü-->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        &nbsp;&nbsp;<i class="fa-solid fa-ticket"></i>&nbsp;
+                        <p>
+                            Ürünler
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="Index" asp-route-id="false" class="nav-link">
+                                &nbsp;&nbsp;<i class="fa-solid fa-list"></i>&nbsp;
+                                <p>Ürün Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="Create" class="nav-link">
+                                &nbsp;&nbsp;<i class="fa-solid fa-plus"></i>&nbsp;
+                                <p>Ürün Ekle</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="Index" asp-route-id="true" class="nav-link">
+                                &nbsp;&nbsp;<i class="fa-solid fa-trash"></i>&nbsp;
+                                <p>Çöp Kutusu</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--Kategoriler menüsü-->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Kategoriler
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="nav-link">
+                                &nbsp;&nbsp;<i class="fa-solid fa-list"></i></i>&nbsp;
+                                <p>Kategori Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Category" asp-action="Create" class="nav-link">
+                                &nbsp;&nbsp;<i class="fa-solid fa-plus"></i>&nbsp;
+                                <p>Kategori Ekle</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--Kullanıcılar menüsü-->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        &nbsp;&nbsp;<i class="fa-solid fa-users"></i>&nbsp;
+                        <p>
+                            Kullanıcılar
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="User" asp-action="Create" class="nav-link">
+                                &nbsp;&nbsp;<i class="fa-solid fa-user-plus"></i>&nbsp;
+                                <p>Yeni Kullanıcı</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="User" asp-action="Index" class="nav-link">
+                                &nbsp;&nbsp;<i class="fa-solid fa-user-tie"></i>&nbsp;
+                                <p>Tüm Kullanıcılar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Role" asp-action="Index" class="nav-link">
+                                &nbsp;&nbsp;<i class="fa-solid fa-user-tag"></i>&nbsp;
+                                <p>Rol Listesi</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--Siparişler menüsü-->
+                <li class="nav-item">
+                    <a asp-area="Admin" asp-controller="Order" asp-action="Index" class="nav-link">
+                        &nbsp;&nbsp;<i class="fa-solid fa-cart-arrow-down"></i>&nbsp;
+                        <p>Siparişler</p>
+                    </a>
+                </li>
+
+                <!--Mesajlar menüsü-->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        &nbsp;&nbsp;<i class="fa-solid fa-envelope"></i>&nbsp;
+                        <p>Mesajlar</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

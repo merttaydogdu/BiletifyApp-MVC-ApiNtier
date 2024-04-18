@@ -1,0 +1,31 @@
+﻿@model List<Order>
+
+<link rel="stylesheet" href="~/website/css/profile.css" />
+
+<h1 class="display-6 mt-2 text-center">Geçmiş Siparişlerim</h1>
+<hr />
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tarih</th>
+            <th>Tutar</th>
+            <th>Durum</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var o in Model)
+        {
+            <tr>
+                <td>@o.Id</td>
+                <td>@o.OrderDate</td>
+                <td>@($"{o.OrderDetails.Sum(x=>x.Price * x.Quantity):C0}")</td>
+                <td>@o.OrderState</td>
+                <td>
+                    <a class="btn" style="background-color:#1ed760;">Detay</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

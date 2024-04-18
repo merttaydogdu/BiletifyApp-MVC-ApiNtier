@@ -1,0 +1,54 @@
+﻿@model DeleteProductViewModel
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="mt-1 m-0">Ürün Silme</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home">Anasayfa</a></li>
+                        <li class="breadcrumb-item active">Ürün Silme</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-secondary w-50 m-auto">
+                        <div class="card-header">
+                            <h3 class="card-title"></h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <label class="text-danger">Silinecek Ürün:</label>
+                            <span>@Model.Name</span>
+                            <hr />
+                            <label class="text-danger">Ürün Aktiflik Durumu:</label>
+                            <span>@(Model.IsActive ? "Aktif" : "Pasif")</span>
+                            <hr />
+                            <label class="text-danger">Ürün Oluşturulma Tarihi</label>
+                            <span>@Model.CreatedDate.ToShortDateString()</span>
+                            <hr />
+                            <div class="btn-group w-100">
+                                <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="btn btn-dark btn-xl">Vazgeç</a>
+                                <a asp-area="Admin" asp-controller="Product" asp-action="HardDelete" asp-route-id="@Model.Id" onclick="return confirm('@Model.Name öğesini kalıcı olarak silmek istediğinize emin misiniz?')" class="btn btn-danger btn-xl">Kalıcı Olarak Sil</a>
+                                <a asp-area="Admin" asp-controller="Product" asp-action="SoftDelete" asp-route-id="@Model.Id" onclick="return alert('@Model.Name öğesi çöp kutusuna taşınmıştır.')" class="btn btn-secondary btn-xl">Çöp Kutusuna Taşı</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+</div>
+
+
+

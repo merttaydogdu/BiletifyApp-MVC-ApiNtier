@@ -1,0 +1,28 @@
+﻿@model ProductViewModel
+
+<link rel="stylesheet" href="~/website/css/review.css" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/images/products/@Model.ImageUrl" class="img-fluid" alt="@Model.Name" />
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text">@Model.Properties</p>
+            <div class="card-footer">
+                <label class="d-block text-center fw-bolder mt-1">@($"{Model.Price:C0}")</label>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form asp-area="" asp-controller="Cart" asp-action="AddToCart">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="log-in mt-1 text-center">Sepete Ekle</button>
+                        </form>
+                    }
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿{
+  "profiles": {
+    "Biletify.UI": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:59079;http://localhost:59080",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

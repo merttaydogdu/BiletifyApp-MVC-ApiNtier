@@ -1,0 +1,47 @@
+﻿@model HomePageViewModel
+
+
+
+<link rel="stylesheet" href="~/website/css/index.css">
+
+<div class="slider-container">
+    <h1 class="display-6" style="color:#1ED760;">Öne Çıkanlar</h1>
+<div class="slider">
+    <div class="slides">
+        @foreach (var p in Model.FeaturedProducts)
+        {   
+        
+            <div class="slide">
+                <a asp-controller="Ticket" asp-action="Review" asp-route-id="@p.Id"><img src="~/images/products/@p.ImageUrl" alt="@p.Name" /></a>
+                <div class="content">
+                    <a asp-controller="Ticket" asp-action="Review" asp-route-id="@p.Id"><h3>@p.Name</h3>
+                    <p>@p.Properties</p></a>
+                </div>
+            </div>
+        }
+    </div>
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+</div>
+</div>
+
+<div class="music-title">
+    <h2 class="display-6" style="color:#1ED760;">Müzik</h2>
+</div>
+
+<div class="product-cards">
+    @foreach (var pm in Model.MusicProducts)
+    {
+        <div class="product-card">
+            <a asp-controller="Ticket" asp-action="Review" asp-route-id="@pm.Id"><img src="~/images/products/@pm.ImageUrl" alt="@pm.Name" /></a>
+        <a asp-controller="Ticket" asp-action="Review" asp-route-id="@pm.Id"><h3>@pm.Name</h3></a>
+        <p>@pm.Properties</p>
+        </div>
+    }
+</div>
+
+
+
+
+
+<script src="~/website/js/index.js"></script>

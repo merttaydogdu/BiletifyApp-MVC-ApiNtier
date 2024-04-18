@@ -1,0 +1,75 @@
+﻿@model List<Order>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Siparişler</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home">Anasayfa</a></li>
+                        <li class="breadcrumb-item active">Siparişler</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="myDataTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="30">Sipariş Numarası</th>
+                                        <th>Tarih</th>
+                                        <th>Tutar</th>
+                                        <th>Durum</th>
+                                        <th>Ödeme Tipi</th>
+                                        <th width="50">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var order in Model)
+                                    {
+                                        <tr>
+                                            <td>@order.OrderNumber</td>
+                                            <td>@order.OrderDate</td>
+                                            <td>@($"{order.OrderDetails.Sum(x => x.Price * x.Quantity):C0}")</td>
+                                            <td>@order.OrderState</td>
+                                            <td>@order.PaymentType</td>
+                                            <td>
+                                                <a class="btn" style="background-color:#1ed760;">Detay</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section Scripts {
+    @await Html.PartialAsync("_DataTablesScriptsPartial")
+}
+
+@section Styles {
+    @await Html.PartialAsync("_DataTablesStylesPartial")
+}

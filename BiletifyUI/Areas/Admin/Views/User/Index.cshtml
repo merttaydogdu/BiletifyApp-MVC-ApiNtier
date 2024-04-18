@@ -1,0 +1,83 @@
+﻿@model List<UserViewModel>
+
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Kullanıcı Listesi</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home">Anasayfa</a></li>
+                        <li class="breadcrumb-item active">Kullanıcı Listesi</li>
+                    </ol>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+            
+        </div><!-- /.container-fluid -->
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-right mb-2">
+                                <a asp-area="Admin"
+                                   asp-controller="User"
+                                   asp-action="Create"
+                                   class="btn btn-dark btn-xl">Yeni Kullanıcı Oluştur</a>
+                            </div>
+                            <table id="myDataTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Kullanıcı Adı</th>
+                                        <th>Kullanıcı Adı Soyadı</th>
+                                        <th>Kullanıcı Email</th>
+                                        <th>Kayıt Tarihi</th>
+                                        <th width="50">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var u in Model)
+                                    {
+                                        <tr>
+                                            <td>@u.Id</td>
+                                            <td>@u.UserName</td>
+                                            <td>@u.Name</td>
+                                            <td>@u.Email</td>
+                                            <td>@u.CreatedDate.ToShortDateString()</td>
+                                            <td class="text-center">
+                                                <a asp-area="Admin" 
+                                                asp-controller="User"
+                                                asp-action="AssignRoles" 
+                                                asp-route-id="@u.Id"
+                                                class="btn btn-warning btn-sm">
+                                                    <i class="far fa-edit"></i>&nbsp;Rol Atama
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+@section Scripts{
+    @await Html.PartialAsync("_DataTablesScriptsPartial")
+}
+
+@section Styles{
+    @await Html.PartialAsync("_DataTablesStylesPartial")
+}
