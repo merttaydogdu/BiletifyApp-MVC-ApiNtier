@@ -1,11 +1,11 @@
-﻿.main-page{
-    width:100%;
+﻿.main-page {
+width: 100%;
 }
 
 .main-page h3 {
     color: #1ED760;
-    text-align:center;
-    margin-top:5px;
+    text-align: center;
+    margin-top: 5px;
 }
 
 .main-page ul {
@@ -19,6 +19,18 @@
     color: #999999;
 }
 
-.main-page hr{
-    color:#1ED760;
+.main-page hr {
+    color: #1ED760;
 }
+
+.content {
+    display: none;
+}
+
+.toggle {
+    cursor: pointer;
+}
+
+    .toggle.active + .content {
+        display: block;
+    }

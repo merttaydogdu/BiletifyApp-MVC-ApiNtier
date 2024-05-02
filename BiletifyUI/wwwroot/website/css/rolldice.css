@@ -1,0 +1,29 @@
+﻿.content{
+    text-align:center;
+}
+
+img {
+    width: 500px;
+    height: 400px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #1ED760;
+    border-width: 1px;
+}
+
+h1 {
+    color: #1ed760;
+    margin-top: 10px;
+    margin-bottom:8px;
+}
+
+h2 {
+    color: #1ed760;
+    margin-top:9px;
+}
+
+p{
+    font-size:18px;
+    color:#999999;
+    margin-bottom:20px;
+}

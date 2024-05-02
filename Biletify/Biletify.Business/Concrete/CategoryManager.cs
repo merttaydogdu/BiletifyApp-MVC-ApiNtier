@@ -29,23 +29,16 @@ namespace Biletify.Business.Concrete
 
         public async Task<Response<CategoryViewModel>> CreateAsync(AddCategoryViewModel addCategoryViewModel)
         {
-            try
-            {
-                var category = _mapper.Map<Category>(addCategoryViewModel);
-                var createdCategory = await _repository.CreateAsync(category);
+            var category = _mapper.Map<Category>(addCategoryViewModel);
+            var createdCategory = await _repository.CreateAsync(category);
 
-                if (createdCategory == null)
-                {
-                    return Response<CategoryViewModel>.Fail("Kategori oluşturulamadı");
-                }
-
-                var createdCategoryViewModel = _mapper.Map<CategoryViewModel>(createdCategory);
-                return Response<CategoryViewModel>.Success(createdCategoryViewModel);
-            }
-            catch (Exception ex)
+            if (createdCategory == null)
             {
-                return Response<CategoryViewModel>.Fail(ex.Message);
+                return Response<CategoryViewModel>.Fail("Kategori oluşturulamadı");
             }
+
+            var createdCategoryViewModel = _mapper.Map<CategoryViewModel>(createdCategory);
+            return Response<CategoryViewModel>.Success(createdCategoryViewModel);
         }
 
         public async Task<Response<CategoryViewModel>> UpdateAsync(EditCategoryViewModel editCategoryViewModel)

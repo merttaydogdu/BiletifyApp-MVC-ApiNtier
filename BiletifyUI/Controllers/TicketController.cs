@@ -1,4 +1,6 @@
 ﻿using Biletify.Business.Abstract;
+using Biletify.Data.Concrete.EfCore.Contexts;
+using Biletify.Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -7,10 +9,12 @@ namespace BiletifyUI.Controllers
     public class TicketController : Controller
     {
         private readonly IProductService _productManager;
+        private readonly BiletifyDbContext _context;
 
-        public TicketController(IProductService productManager)
+        public TicketController(IProductService productManager, BiletifyDbContext context)
         {
             _productManager = productManager;
+            _context = context;
         }
 
         public async Task<IActionResult> Index()
@@ -31,7 +35,20 @@ namespace BiletifyUI.Controllers
             {
                 return NotFound();
             }
-            
+        }
+        private Product GetRandomProductFromDatabase()
+        {
+            var products = _context.Products.ToList();
+            var random = new Random();
+            var randomIndex = random.Next(products.Count);
+            var randomProduct = products[randomIndex];
+            return randomProduct;
+        }
+
+        public async Task<IActionResult> RollDice()
+        {
+            var randomProduct = GetRandomProductFromDatabase(); 
+            return View(randomProduct);
         }
     }
 }

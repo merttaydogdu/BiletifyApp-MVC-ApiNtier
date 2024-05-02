@@ -33,6 +33,7 @@
                                         <th width="30">Sipariş Numarası</th>
                                         <th>Tarih</th>
                                         <th>Tutar</th>
+                                        <th>Müşteri Notu</th>
                                         <th>Durum</th>
                                         <th>Ödeme Tipi</th>
                                         <th width="50">#</th>
@@ -44,7 +45,8 @@
                                         <tr>
                                             <td>@order.OrderNumber</td>
                                             <td>@order.OrderDate</td>
-                                            <td>@($"{order.OrderDetails.Sum(x => x.Price * x.Quantity):C0}")</td>
+                                            <td class="text-danger">@($"{order.OrderDetails.Sum(x => x.Price * x.Quantity):C0}")</td>
+                                            <td>@order.Note</td>
                                             <td>@order.OrderState</td>
                                             <td>@order.PaymentType</td>
                                             <td>

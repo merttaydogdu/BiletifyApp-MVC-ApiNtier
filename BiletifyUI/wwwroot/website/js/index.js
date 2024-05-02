@@ -25,5 +25,5 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector('.next').addEventListener('click', nextSlide);
     document.querySelector('.prev').addEventListener('click', prevSlide);
 
-    setInterval(nextSlide, 5000); // Otomatik geçiþ için
+    setInterval(nextSlide, 5000); 
 });

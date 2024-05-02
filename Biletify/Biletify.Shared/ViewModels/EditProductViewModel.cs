@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Biletify.Shared.ViewModels
 {
@@ -16,13 +17,13 @@ namespace Biletify.Shared.ViewModels
         [JsonPropertyName("Name")]
         [DisplayName("Ürün")]
         [Required(ErrorMessage = "{0} alanı boş bırakılamaz.")]
-        [MinLength(5, ErrorMessage = "{0} alanına uzunlu�u {1} karakterden küçükk değer girilemez.")]
-        [MaxLength(100, ErrorMessage = "{0} alanına uzunluğu {1} karakterden büyükk değer girilemez.")]
+        [MinLength(5, ErrorMessage = "{0} alanına uzunluğu {1} karakterden küçük değer girilemez.")]
+        [MaxLength(100, ErrorMessage = "{0} alanına uzunluğu {1} karakterden büyük değer girilemez.")]
         public string Name { get; set; }
 
 
         [JsonPropertyName("Properties")]
-        [DisplayName("Ürün �zellikleri")]
+        [DisplayName("Ürün Özellikleri")]
         public string Properties { get; set; }
 
 

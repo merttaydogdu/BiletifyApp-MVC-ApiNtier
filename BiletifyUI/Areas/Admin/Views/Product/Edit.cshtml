@@ -140,14 +140,10 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="~/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
-    <!-- summernote -->
-    <link rel="stylesheet" href="~/admin/plugins/summernote/summernote-bs4.min.css">
 }
 
 @section Scripts {
-    <!-- Summernote -->
-    <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
-    <script src="~/admin/dist/js/summernote.js"></script>
+    
     <script>
         $(function () {
             // Summernote
@@ -157,7 +153,7 @@
         })
         document.getElementById("image").addEventListener("change", function (e) {
             const selectedFile = e.target.files[0];
-            $("#img-viewer").attr("src", window.URL.createObjectURL(selectedFile));
+            $("#image-viewer").attr("src", window.URL.createObjectURL(selectedFile));
         })
     </script>
 }

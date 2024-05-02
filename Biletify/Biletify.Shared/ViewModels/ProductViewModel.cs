@@ -19,7 +19,8 @@ namespace Biletify.Shared.ViewModels
         public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public string Category { get; set; }
         public List<InCategoryViewModel> CategoryList { get; set; }
-
+        
     }
 }

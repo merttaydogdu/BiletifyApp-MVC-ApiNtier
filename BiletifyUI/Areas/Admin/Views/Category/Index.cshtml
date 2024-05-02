@@ -33,7 +33,6 @@
                                         <th width="30">Id</th>
                                         <th>Ürün</th>
                                         <th>Ürün Açıklaması</th>
-                                        <th>Aktif</th>
                                         <th width="50">#</th>
                                     </tr>
                                 </thead>
@@ -45,19 +44,8 @@
                                             <td>@c.Name</td>
                                             <td>@c.Description</td>
                                             <td>
-                                                <form asp-area="Admin" asp-controller="Category" asp-action="UpdateIsActive" asp-route-id="@c.Id" id="formIsActive_@c.Id">
-                                                    <div class="custom-control custom-switch">
-                                                        <input onchange="document.getElementById('formIsActive_@c.Id').submit();"
-                                                               type="checkbox" class="custom-control-input"
-                                                        @(c.IsActive ? "checked" : "")
-                                                               id="isActive_@c.Id">
-                                                        <label class="custom-control-label" for="isActive_@c.Id"></label>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                            <td>
                                                 <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@c.Id" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a asp-area="Admin" asp-controller="Category" asp-action="Trash" asp-route-id="@c.Id" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                                                <a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@c.Id" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     }

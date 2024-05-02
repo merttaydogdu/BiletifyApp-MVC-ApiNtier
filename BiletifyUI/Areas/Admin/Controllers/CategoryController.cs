@@ -9,6 +9,7 @@ using Biletify.Business.Abstract;
 using Biletify.Shared.ResponseViewModels;
 using Biletify.Shared.ViewModels;
 using Biletify.Business.Concrete;
+using Biletify.Entity.Concrete;
 
 namespace BiletifyUI.Areas.Admin.Controllers
 {
@@ -35,21 +36,29 @@ namespace BiletifyUI.Areas.Admin.Controllers
         
 
         [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var model = new AddCategoryViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Create(AddCategoryViewModel addCategoryViewModel)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return View(addCategoryViewModel);
             }
-            var result = await _categoryManager.CreateAsync(addCategoryViewModel);
 
-            if (result.IsSucceeded)
+            var response = await _categoryManager.CreateAsync(addCategoryViewModel);
+
+            if (response.IsSucceeded)
             {
-                return RedirectToAction("Details", new { id = result.Data.Id });
+                return RedirectToAction("Index");
             }
             else
             {
-                ModelState.AddModelError("", result.Error);
+                ModelState.AddModelError(string.Empty, response.Error);
                 return View(addCategoryViewModel);
             }
         }
@@ -61,29 +70,64 @@ namespace BiletifyUI.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var response = await _categoryManager.GetByIdAsync(id);
+
+            if (!response.IsSucceeded)
+            {
+                return NotFound();
+            }
+
+            var categoryViewModel = response.Data;
+            var editCategoryViewModel = new EditCategoryViewModel
+            {
+                Id = categoryViewModel.Id,
+                Name = categoryViewModel.Name,
+                Description = categoryViewModel.Description,
+                Url = categoryViewModel.Url,
+                IsActive = categoryViewModel.IsActive
+            };
+
+            return View(editCategoryViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(int id, EditCategoryViewModel editCategoryViewModel)
+        public async Task<IActionResult> Edit(EditCategoryViewModel editCategoryViewModel)
         {
-            if (id != editCategoryViewModel.Id)
-            {
-                return BadRequest();
-            }
-
-            var result = await _categoryManager.UpdateAsync(editCategoryViewModel);
-
-            if (result.IsSucceeded)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else
+            if (!ModelState.IsValid)
             {
                 return View(editCategoryViewModel);
             }
+
+            var response = await _categoryManager.UpdateAsync(editCategoryViewModel);
+
+            if (!response.IsSucceeded)
+            {
+                ModelState.AddModelError(string.Empty, response.Error);
+                return View(editCategoryViewModel);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _categoryManager.GetByIdAsync(id);
+            if (!response.IsSucceeded)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var categoryViewModel = response.Data;
+            return View(categoryViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> HardDelete(int id)
+        {
+            await _categoryManager.HardDeleteAsync(id);
+            return RedirectToAction("Index");
         }
     }
 }

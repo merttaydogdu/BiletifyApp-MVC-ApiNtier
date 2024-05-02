@@ -27,7 +27,7 @@ namespace BiletifyUI.Controllers
 
             var allProducts = response.Data;
 
-            int musicCategoryId = 3; 
+            int musicCategoryId = 3;
 
             var musicResponse = await _productManager.GetProductsByCategoryIdAsync(musicCategoryId);
 
@@ -49,7 +49,6 @@ namespace BiletifyUI.Controllers
             };
 
             return View(viewModel);
-
         }
 
         public IActionResult AboutUs()

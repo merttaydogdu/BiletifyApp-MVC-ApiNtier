@@ -9,13 +9,13 @@
     {
         <div class="card mt-2 mx-auto" style="width:20rem;">
             <a asp-controller="Ticket" asp-action="Review" asp-route-id="@p.Id"><img src="~/images/products/@p.ImageUrl" class="card-img-top rounded mt-2" style="width:295px; height:240px;" /></a>
-        <div class="card-body">
-            <a asp-controller="Ticket" asp-action="Review" asp-route-id="@p.Id"><h5 class="card-title">@p.Name</h5></a>
-            <p class="card-text">@p.Properties</p>
-        </div>
-        <div class="card-footer">
-            <label class="d-block text-center fw-bolder mt-1">@($"{p.Price:C0}")</label>
-            @if (User.Identity.IsAuthenticated)
+            <div class="card-body">
+                <a asp-controller="Ticket" asp-action="Review" asp-route-id="@p.Id"><h5 class="card-title">@p.Name</h5></a>
+                <p class="card-text">@p.Properties</p>
+            </div>
+            <div class="card-footer">
+                <label class="d-block text-center fw-bolder mt-1">@($"{p.Price:C0}")</label>
+                @if (User.Identity.IsAuthenticated)
                 {
                     <form asp-area="" asp-controller="Cart" asp-action="AddToCart">
                         <input type="hidden" name="id" value="@p.Id" />
@@ -23,9 +23,9 @@
                         <button type="submit" class="log-in  mt-1 text-center" style="width:268px;">Sepete Ekle</button>
                     </form>
                 }
-            
+
+            </div>
         </div>
-        </div>
-        
+
     }
 </div>
